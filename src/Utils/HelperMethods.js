@@ -20,11 +20,18 @@ export async function sendQuery(sessionId, query) {
     return data.answer;
 }
 
-// // get chat history
-// export async function getHistory(sessionId) {
-//     const r = await fetch(`/api/history/${sessionId}`);
-//     return r.json();
-// }
+// clear chat history
+export async function clearChatHistory(sessionId) {
+    const response = await fetch(`${baseURL}/api/users/session/${sessionId}`, {
+        method: 'DELETE',
+    });
+
+    if (!response.status === 200) {
+        return false;
+    }
+
+    return true;
+}
 
 
 export async function getChatHistory(sessionId) {
